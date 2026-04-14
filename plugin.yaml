@@ -1,0 +1,9 @@
+manifest_version: 1
+name: hermes-lark
+version: 0.1.0
+description: Hermes plugin that ports OpenClaw Lark/Feishu capabilities to Hermes-native tools.
+author: sunyj89
+license: MIT
+required_env:
+  - FEISHU_APP_ID
+  - FEISHU_APP_SECRET
