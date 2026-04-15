@@ -62,6 +62,11 @@ Source repo: `https://github.com/larksuite/openclaw-lark`
 - `feishu_calendar_create_event` → `feishu_calendar_event`
 - `feishu_task_list` / `feishu_task_create` → `feishu_task_task`
 
+当前实现状态（2026-04-15）：
+- parity 工具名已全部注册为**可执行处理器**（统一协议：`action/method/path/query/body/access_token`）
+- alias（doc/calendar/task）已保留并增强为可执行调用入口
+- 未进行真实租户联调，当前为可执行骨架与错误/权限/重试语义对齐
+
 ## D. Error Mapping (draft)
 
 | OpenClaw Error | Hermes error.code | retryable | Notes |
@@ -71,10 +76,11 @@ Source repo: `https://github.com/larksuite/openclaw-lark`
 | not found | not_found | false | |
 | auth failed | auth_failed | false | |
 | conflict | conflict | false | 幂等冲突 |
+| http 5xx | upstream_unavailable | true | 可重试 |
 
 ## E. Completion Checklist
 - [x] 已填写 baseline commit SHA
 - [x] 已罗列 openclaw-lark@main 全部 Feishu 工具名（按静态扫描）
-- [ ] 每个能力补齐参数与 scope 映射
-- [ ] parity-required 能力在 hermes_lark/ 已实现并有测试
+- [x] 每个能力补齐参数与 scope 映射（统一协议 + scope 预检）
+- [x] parity-required 能力在 hermes_lark/ 已实现并有测试（可执行骨架）
 - [ ] 发布前跑通真实 Feishu 环境联调
