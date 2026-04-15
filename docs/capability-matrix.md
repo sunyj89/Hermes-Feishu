@@ -61,10 +61,12 @@ Source repo: `https://github.com/larksuite/openclaw-lark`
 - `feishu_calendar_list` → `feishu_calendar_event`
 - `feishu_calendar_create_event` → `feishu_calendar_event`
 - `feishu_task_list` / `feishu_task_create` → `feishu_task_task`
+- `feishu_doctor` → 诊断聚合工具（卡片化输出）
+- `feishu_auth` → OAuth/批量授权工具（卡片化输出）
 
 当前实现状态（2026-04-15）：
 - parity 工具名已全部注册为**可执行处理器**（统一协议：`action/method/path/query/body/access_token`）
-- alias（doc/calendar/task）已保留并增强为可执行调用入口
+- alias（doc/calendar/task/doctor/auth）已保留并增强为可执行调用入口
 - 未进行真实租户联调，当前为可执行骨架与错误/权限/重试语义对齐
 
 ## D. Error Mapping (draft)

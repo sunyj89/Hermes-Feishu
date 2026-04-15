@@ -46,4 +46,6 @@ ALIAS_TOOL_NAMES = [
     "feishu_calendar_create_event",
     "feishu_task_list",
     "feishu_task_create",
+    "feishu_doctor",
+    "feishu_auth",
 ]

@@ -1,6 +1,7 @@
 from .capabilities import ALIAS_TOOL_NAMES, PARITY_TOOL_NAMES
 from .tools_calendar import feishu_calendar_create_event, feishu_calendar_list
 from .tools_common import execute_openapi_tool
+from .tools_doctor_auth import feishu_auth, feishu_doctor, feishu_oauth, feishu_oauth_batch_auth
 from .tools_docs import feishu_doc_append, feishu_doc_read, feishu_doc_replace_text
 from .tools_tasks import feishu_task_create, feishu_task_list
 
@@ -13,6 +14,13 @@ _IMPLEMENTED_ALIAS_HANDLERS = {
     "feishu_calendar_create_event": feishu_calendar_create_event,
     "feishu_task_list": feishu_task_list,
     "feishu_task_create": feishu_task_create,
+    "feishu_doctor": feishu_doctor,
+    "feishu_auth": feishu_auth,
+}
+
+_IMPLEMENTED_PARITY_HANDLERS = {
+    "feishu_oauth": feishu_oauth,
+    "feishu_oauth_batch_auth": feishu_oauth_batch_auth,
 }
 
 
@@ -46,7 +54,11 @@ def register_plugin(ctx):
         if name in seen:
             continue
         seen.add(name)
-        handler = _wrap_handler(name, lambda _tool=name, **args: execute_openapi_tool(_tool, **args))
+        parity_handler = _IMPLEMENTED_PARITY_HANDLERS.get(name)
+        if parity_handler is not None:
+            handler = _wrap_handler(name, parity_handler)
+        else:
+            handler = _wrap_handler(name, lambda _tool=name, **args: execute_openapi_tool(_tool, **args))
         ctx.register_tool(
             name=name,
             toolset="hermes-feishu",

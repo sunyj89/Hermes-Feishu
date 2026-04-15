@@ -14,6 +14,8 @@ TOOL_SCOPE_MAP = {
     "feishu_calendar_create_event": ["calendar:event"],
     "feishu_task_list": ["task:task:readonly"],
     "feishu_task_create": ["task:task"],
+    "feishu_doctor": [],
+    "feishu_auth": [],
     # parity tools
     "feishu_oauth": [],
     "feishu_oauth_batch_auth": [],

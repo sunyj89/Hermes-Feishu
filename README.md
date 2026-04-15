@@ -6,6 +6,7 @@
 - 与 `openclaw-lark@main` 的飞书能力保持功能对齐（MVP）
 - 首发仅支持 **Feishu**
 - MIT 开源协议
+- 提供 `feishu_doctor` / `feishu_auth` 卡片化联调能力（可直接发送 interactive 卡片）
 
 ## 安装（仓库发布后）
 ```bash
